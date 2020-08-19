@@ -20,6 +20,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #Third-Party
+
+
+    #Local App's
+    'pages.apps.PagesConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -37,7 +44,7 @@ ROOT_URLCONF = 'enterprisex.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
