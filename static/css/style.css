@@ -1,24 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Tamma+2&display=swap');
 
 
 html, body {
     width: 100%;
     height: 50%;
     /* overflow-x: hidden; */
-    font-family: 'Lato', sans-serif;
+    /* font-family: 'Lato', sans-serif; */
+    font-family: 'Baloo Tamma 2', cursive;
 }
 .navbar {
   width: 0 auto;
-  padding: .8rem;
+  padding: .5rem;
+  background: grey;
+  box-shadow: 1px 1px 5px rgba(168, 168, 168, 0.719);
 }
 .navbar-nav li {
   padding-right: 20px;
-  text-transform: uppercase; 
+  text-transform: uppercase;
+  font-color: black; 
+}
+.navbar-brand img { /* ajuste del logo */
+  margin-left: 1rem;
+  height: 4rem;
+  width: 4rem;
 }
 .nav-link {
   font-size: .9rem !important;
   text-transform: uppercase; 
 }
+
+
+
+/*--- End Search Bar --*/
 
 /*--- Start Carousel ---*/
 .carousel-inner {
@@ -63,21 +76,26 @@ html, body {
 
 /*--- Start Section 1 ---*/
 .valores {
-    padding: 4rem;
-    margin: 2rem;
+    padding: 1rem;
+    margin: 0 auto;
 }
 .valores h3 {
-    margin-bottom: 1rem;
+    margin-bottom: .5rem;
     text-transform: uppercase;
 }
 .valores p {
   margin-bottom: 1rem;
 }
+blockquote .fa-quote-left{
+  color: #56EA54;
+  margin: .8rem;
+  font-size: 1.3rem;
+}
 /*--- End Section 1 ---*/
 
 /*-- Start Background Fixed Image */
 #fixed {
-  background: url("img/apple.png") no-repeat center center fixed;
+  background: url("img/anotherphycopedagogy.jpg") no-repeat center center fixed;
   display: table;
 	height: 25rem;
 	position: relative;
@@ -91,36 +109,84 @@ html, body {
 .padding {
   padding: 5rem 1rem;
 }
-.fa-code, .fa-bold, .fa-css3 {
+.padding h3{
+  margin-bottom: 2rem;
+}
+.fa-line-chart {
+  color: #53e526;
+}
+.fa-child {
+  color: #52B2F3;
+}
+.fa-search-plus {
+  color: #F37357;
+}
+.fa-line-chart, .fa-child, .fa-search-plus {
   font-size: 4rem;
   margin: 1rem;
 }
+h3.heading {
+  font-size: 1.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 1.9rem;
+}
+.heading-underline {
+    width: 3rem;
+    height: .2rem;
+    background-color: #1ebba3;
+    margin: 0 auto 2rem; 
+
+}
+
 /* End Section 2 */
 
 /* Start Section 3 */
-.jumbotron {
+/* .rowone {
+  margin: 0 auto;
+  /* align-items: center; 
+} */ 
+ .jumbotron {
   width: 100%;
-  padding: 4rem 2rem 4rem;
+  /* padding: 4rem 2rem 4rem; */
   border-radius: 0;
-  background-color: #FFB7A2;
+  background-color: #ce6048;
   margin-bottom: 0;
 }
 .jumbotron img {
-  width: 20rem;
-  margin-left: 6rem;
-  margin-bottom: 2rem;
-  margin-top: 2rem;
-  box-shadow: 10px 10px 5px rgba(107, 107, 107, 0.719);
+  width: 15rem;
+  height: 15rem;
+  /* box-shadow: 10px 10px 5px rgba(107, 107, 107, 0.719); */
 }
 .jumbotron p {
-  margin: 2rem 2rem 2rem;
+  margin: 2rem;
   text-align: center;
+}  
+.jumbotron .jumbotron-text {
+  padding: 1rem;
 }
+
+.jumbotron .jumbotron-img {
+  min-height: 11rem;
+  margin-top: 5rem;
+  margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .jumbotron .jumbotron-text {
+    padding: 1rem;
+    margin-bottom: 0;
+  }
+}
+
+
 /* End Section 3 */
+
+
 .callto {
   padding: 1rem;
   margin-bottom: 0;
-  background-color: rgb(235, 158, 134);
+  background-color: rgb(181 90 64);
   box-shadow: 0 8px 8px -2px gray;
 }
 .narrow {
@@ -149,17 +215,44 @@ html, body {
 
 /*  footer */
 footer {
-  background-color: #3f3f3f;
+  background-color: #4fa328;
   color: #d5d5d5;
   padding-top: 2rem;
+
 }
 footer img {
-  width: 5rem;
-  height: 5rem;
+  width: 3.6rem;
+  height: 3.6rem;
 	/* margin: 5rem 0; */
 }
 hr.light {
   border-top: 1px solid #d5d5d5;
   width: 75%;
 }
+hr.socket {
+  border-top: 1px solid #d5d5d5;
+  width: 75%;
+}
 /* end footer */
+
+/*-- Start login --*/
+.login {
+  margin-top: 6.2rem;
+}
+
+.btn-signin {
+  margin-bottom: 3.3rem;
+}
+
+
+.btn-google {
+  color: white;
+  background-color: #ea4335;
+}
+
+.btn-facebook {
+  color: white;
+  background-color: #3b5998;
+}
+
+/*-- End login --*/
