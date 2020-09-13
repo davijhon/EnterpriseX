@@ -7,7 +7,11 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
 
+    # Allauth URL's
+    path('accounts/', include('allauth.urls')),
+    
     path('', include('pages.urls', namespace='pages')),
+    
 ]
 
 # ERROR 404- NOT FOUND PAGE
