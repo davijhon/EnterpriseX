@@ -20,12 +20,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites', #Users allauth
 
-    #Third-Party
+    # 3rd Party
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
+    'crispy_forms',
 
 
     #Local App's
     'pages.apps.PagesConfig',
+    'users.apps.UsersConfig',
 
 ]
 
@@ -98,7 +106,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/')]
 
-MEDIA_URL = '/media/'
+MEDIA_URL = '/media/headers/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
@@ -108,3 +116,34 @@ STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 
 ]
+
+# Account & Users
+# django-allauth config
+AUTH_USER_MODEL = 'users.CustomUser'
+
+LOGIN_REDIRECT_URL = 'shop:home'
+ACCOUNT_LOGOUT_REDIRECT_URL = 'shop:home'
+
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = (
+
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+
+)
+
+ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_SESSION_REMEMBER = False
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+
+
+# crispy form custom
+CRISPY_CLASS_CONVERTERS = {'textinput': "form-control",
+                            'passwordinput': "form-control"}
