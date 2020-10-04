@@ -6,23 +6,23 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="{% url 'pages:index' %}">
       <img src="{% static 'css/img/psychopedagogylogo.png' %}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
     </a>
 
 
       <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" href="#">Home</a>
+            <a class="nav-link active" href="{% url 'pages:index' %}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
+            <a class="nav-link" href="{% url 'pages:pricing' %}">Pricing</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="{% url 'pages:about' %}">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="{% url 'pages:contact' %}">Contact</a>
           </li>
             {% if user.is_authenticated %}
               <li class="nav-dropdown">
@@ -30,7 +30,9 @@
                   {{ user.username }}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="{% url 'account_change_password' %}">Change password</a>
+                  <a class="dropdown-item" href="{% url 'users:detail' request.user.username  %}">Profile</a>
+                  <!-- <div class="dropdown-divider"></div> -->
+                  <!-- <a class="dropdown-item" href="{# % url 'account_change_password' % #}">Change password</a> -->
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="{% url 'account_logout' %}">Log Out</a>
                 </div>

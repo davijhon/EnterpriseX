@@ -1,21 +1,38 @@
-from django.contrib.auth import get_user_model
-from django import forms 
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth import forms, get_user_model
+from django.core.exceptions import ValidationError 
+from django import forms as normal_forms
 
 
-class CustomUserCreationForm(UserCreationForm):
 
-	class Meta:
-		model = get_user_model()
-		fields = ('email', 'username',)
-		widgets = {
-          'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder':'Email Address'}),
-		  'password': forms.PasswordInput(attrs={'class': 'form-control'}),
-        }
-		
+User = get_user_model()
 
-class CustomUserChangeForm(UserChangeForm):
 
-	class Meta:
-		model = get_user_model()
-		fields = ('email', 'username',)
+
+class CancelSubscriptionForm(normal_forms.Form):
+	hidden = normal_forms.HiddenInput()
+
+
+class CustomUserCreationForm(forms.UserCreationForm):
+
+	error_message = forms.UserCreationForm.error_messages.update(
+		{"duplicate_username": ("This username has already been taken.")}
+	)
+
+	class Meta(forms.UserCreationForm.Meta):
+		model = User
+
+	def clean_username(self):
+		username = self.cleaned_data["username"]
+
+		try:
+			User.objects.get(username=username)
+		except User.DoesNotExist:
+			return username
+
+		raise ValidationError(self.error_messages["duplicate_username"])
+
+
+class CustomUserChangeForm(forms.UserChangeForm):
+
+	class Meta(forms.UserChangeForm.Meta):
+		model = User

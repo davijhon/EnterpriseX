@@ -1,6 +1,6 @@
 from django.contrib import admin
+from django.contrib.auth import admin as auth_admin
 from django.contrib.auth import get_user_model
-from django.contrib.auth.admin import UserAdmin
 
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 
@@ -8,11 +8,13 @@ from .forms import CustomUserCreationForm, CustomUserChangeForm
 CustomUser = get_user_model()
 
 
-class CustomUserAdmin(UserAdmin):
-	add_form = CustomUserCreationForm
-	form = CustomUserChangeForm
-	model = CustomUser
-	list_display = ['email', 'username',]
+@admin.register(CustomUser)
+class UserAdmin(auth_admin.UserAdmin):
 
-admin.site.register(CustomUser, CustomUserAdmin)
+    form = CustomUserChangeForm
+    add_form = CustomUserCreationForm
+    fieldsets = (("User", {"fields": ("name", "stripe_customer_id")}),) + auth_admin.UserAdmin.fieldsets
+    list_display = ["username", "name", "is_superuser"]
+    search_fields = ["name"]
+
 

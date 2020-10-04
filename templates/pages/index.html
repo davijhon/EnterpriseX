@@ -1,4 +1,4 @@
-{% extends 'pages/base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 
@@ -73,20 +73,20 @@
 <!-- Start Section 2 -->
 <div class="container-fluid padding">
 	<div class="row text-center padding">
-		<div class="col-xs-12 col-sm-6 col-md-4">
-      <i class="fa fa-line-chart" aria-hidden="true"></i>
+		<div class="col-xs-12 col-sm-6 col-md-4 padding">
+      <i class="fa fa-line-chart fa-3x" aria-hidden="true"></i>
 			<h3>Quality</h3>
       <p>Built with the leates version of HTML, HTML5, teris asterum campen mellis eberatun taram</p>
 
 		</div>
-		<div class="col-xs-12 col-sm-6 col-md-4">
-      <i class="fa fa-child" aria-hidden="true"></i>
+		<div class="col-xs-12 col-sm-6 col-md-4 padding">
+      <i class="fa fa-child fa-3x" aria-hidden="true"></i>
 			<h3>For Everyone</h3>
       <p>Built with the leates version of BOOTSTRAP, teris asterum campen mellis eberatun taram</p>
 
 		</div>
-		<div class="col-sm-12 col-md-4">
-      <i class="fa fa-search-plus" aria-hidden="true"></i>
+		<div class="col-sm-12 col-md-4 padding">
+      <i class="fa fa-search-plus fa-3x" aria-hidden="true"></i>
 			<h3>Searching</h3>
       <p>Built with the leates version of css3, teris asterum campen mellis eberatun taram</p>
 
@@ -119,7 +119,7 @@
       </div>
       <div class="row"> <!-- Start Firts Row -->
           <div class="col-lg-4 jumbotron-img">
-              <img src="{% static 'css/img/search.png' %}">
+              <img src="{% static 'css/img/how1.png' %}">
           </div>
           <div class="col-lg-8 my-auto jumbotron-text"> 
               <p class="lead">Ipsum estem berish tellun akarin balgush esun
@@ -131,7 +131,7 @@
       </div>
       <div class="row"> <!-- Start Firts Row -->
           <div class="col-lg-4 order-lg-2 jumbotron-img">
-              <img src="{% static 'css/img/search.png' %}">
+              <img src="{% static 'css/img/how2.png' %}">
           </div>
           <div class="col-lg-8 order-lg-1 my-auto jumbotron-text"> 
               <p class="lead">Ipsum estem berish tellun akarin balgush esun
@@ -166,51 +166,24 @@
 
 <div class="container">
   <div class="card-deck mb-3 text-center">
-    <div class="card mb-4 shadow-sm">
-      <div class="card-header">
-        <h4 class="my-0 font-weight-normal">Free</h4>
+
+    {% for pricing in pricings %}
+      <div class="card mb-4 shadow-sm">
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal">{{ pricing.name }}</h4>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title pricing-card-title">${{ pricing.price }} <small class="text-muted">/ mo</small></h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            {% for feature in pricing.feature.all %}
+              <li>{{ feature }}</li>
+            {% endfor %}
+          </ul>
+          <a href="{% url 'payments:checkout' slug=pricing.slug %}"><button type="button" class="btn btn-lg btn-block btn-primary">{{ pricing.button_text }}</button></a>
+        </div>
       </div>
-      <div class="card-body">
-        <h1 class="card-title pricing-card-title">$0 <small class="text-muted">/ mo</small></h1>
-        <ul class="list-unstyled mt-3 mb-4">
-          <li>10 users included</li>
-          <li>2 GB of storage</li>
-          <li>Email support</li>
-          <li>Help center access</li>
-        </ul>
-        <button type="button" class="btn btn-lg btn-block btn-primary">Sign up for free</button>
-      </div>
-    </div>
-    <div class="card mb-4 shadow-sm">
-      <div class="card-header">
-        <h4 class="my-0 font-weight-normal">Pro</h4>
-      </div>
-      <div class="card-body">
-        <h1 class="card-title pricing-card-title">$15 <small class="text-muted">/ mo</small></h1>
-        <ul class="list-unstyled mt-3 mb-4">
-          <li>20 users included</li>
-          <li>10 GB of storage</li>
-          <li>Priority email support</li>
-          <li>Help center access</li>
-        </ul>
-        <button type="button" class="btn btn-lg btn-block btn-primary">Get started</button>
-      </div>
-    </div>
-    <div class="card mb-4 shadow-sm">
-      <div class="card-header">
-        <h4 class="my-0 font-weight-normal">Enterprise</h4>
-      </div>
-      <div class="card-body">
-        <h1 class="card-title pricing-card-title">$29 <small class="text-muted">/ mo</small></h1>
-        <ul class="list-unstyled mt-3 mb-4">
-          <li>30 users included</li>
-          <li>15 GB of storage</li>
-          <li>Phone and email support</li>
-          <li>Help center access</li>
-        </ul>
-        <button type="button" class="btn btn-lg btn-block btn-primary">Contact us</button>
-      </div>
-    </div>
+    {% endfor %}
+
   </div>
 </div>
 <!-- End Pricing Section -->

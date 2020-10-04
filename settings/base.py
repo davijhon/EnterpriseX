@@ -29,11 +29,14 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
     'crispy_forms',
+    "rest_framework",
+    "rest_framework.authtoken",
 
 
     #Local App's
     'pages.apps.PagesConfig',
     'users.apps.UsersConfig',
+    'payment.apps.PaymentConfig',
 
 ]
 
@@ -121,8 +124,9 @@ STATICFILES_FINDERS = [
 # django-allauth config
 AUTH_USER_MODEL = 'users.CustomUser'
 
-LOGIN_REDIRECT_URL = 'shop:home'
-ACCOUNT_LOGOUT_REDIRECT_URL = 'shop:home'
+#LOGIN_URL = '/accounts/signup/'
+LOGIN_REDIRECT_URL = 'pages:index'
+ACCOUNT_LOGOUT_REDIRECT_URL = 'pages:index'
 
 SITE_ID = 1
 
@@ -147,3 +151,39 @@ ACCOUNT_UNIQUE_EMAIL = True
 # crispy form custom
 CRISPY_CLASS_CONVERTERS = {'textinput': "form-control",
                             'passwordinput': "form-control"}
+
+# EMAIL BACKEND
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+DEFAULT_FROM_EMAIL = 'davidalejandrodand@gmail.com'
+
+# EMAIL_HOST = 'smtp.sendgrid.net'
+
+# EMAIL_HOST_USER = 'apikey'
+
+# EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+
+# EMAIL_PORT = 587
+
+# EMAIL_USE_TLS = True
+
+# django-rest-framework
+# -------------------------------------------------------------------------------
+# django-rest-framework - https://www.django-rest-framework.org/api-guide/settings/
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+    ),
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+}
+
+
+# STRIPE
+STRIPE_TEST_PUBLIC_KEY = config('STRIPE_TEST_PUBLIC_KEY_2')
+STRIPE_TEST_SECRET_KEY = config('STRIPE_TEST_SECRET_KEY_2')
+STRIPE_LIVE_MODE = config('STRIPE_LIVE_MODE')
+STRIPE_WEBHOOK_SECRET = config('STRIPE_WEBHOOK_SECRET_2')
+
+# CRISPY FORMS
+CRISPY_TEMPLATE_PACK = "bootstrap4"

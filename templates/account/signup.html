@@ -1,4 +1,4 @@
-{% extends 'pages/base.html' %}
+{% extends 'base.html' %}
 {% load socialaccount %}
 {% providers_media_js %}
 {% load crispy_forms_tags %}
@@ -14,9 +14,9 @@
              <!-- Background image for card set in CSS! -->
           </div>
           <div class="card-body">
-            <h5 class="card-title text-center">Register</h5>
-            <form class="form-signin">
-				{% csrf_token %}
+            <h3 class="card-title text-center">Registration</h3>
+            <form class="form-signin" method="post">
+				      {% csrf_token %}
               <div class="form-label-group">
                 {{ form|crispy }}
               </div>

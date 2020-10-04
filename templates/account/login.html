@@ -1,4 +1,4 @@
-{% extends 'pages/base.html' %}
+{% extends 'base.html' %}
 
 {% load socialaccount %}
 {% providers_media_js %}
@@ -11,8 +11,10 @@
 		<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
 		  <div class="card card-signin my-5">
 			<div class="card-body">
-			  <h5 class="card-title text-center">Sign In</h5>
-			  <form class="form-signin">
+			  <h2 class="card-title text-center">
+				To Start With Our Plans And Inquiries, Log in With Your Account</h2>
+				<p class="text-center">Or <a href="{% url 'account_signup' %}" class="text-black">Create an account</a></p>
+			  <form class="form-signin" method="post">
 				  {% csrf_token %}
 				<div class="form-label-group">
 					{{ form|crispy }}
@@ -32,6 +34,8 @@
 		</div>
 	  </div>
 	</div>
+
+
 {% endblock content %}
 
 <!-- This snippet uses Font Awesome 5 Free as a dependency. You can download it at fontawesome.io! -->
